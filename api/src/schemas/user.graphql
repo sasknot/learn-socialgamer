@@ -1,0 +1,85 @@
+input UserListFilters {
+  keyword: String
+}
+
+input UserDataCreate {
+  avatar: MediaData
+  name: String!
+  email: String!
+  password: String!
+  birthday: Date!
+  location: String
+  description: String
+}
+
+input UserDataUpdate {
+  avatar: MediaData
+  name: String
+  email: String
+  birthday: Date
+  location: String
+  description: String
+}
+
+input UserDataPassword {
+  password: String!
+}
+
+input UserFriendDataCreate {
+  user: ID!
+  friend: ID!
+}
+
+input UserFriendDataUpdate {
+  id: ID!
+  status: String!
+}
+
+input UserGameData {
+  user: ID!
+  game: ID!
+}
+
+input UserConsoleData {
+  user: ID!
+  console: ID!
+}
+
+enum UserFriendshipStatus {
+  pending
+  accepted
+  rejected
+}
+
+
+type UserList {
+  rows: [User!]!
+  paging: Paging
+}
+
+type User {
+  id: ID!
+  avatar: Media
+  name: String!
+  email: String!
+  birthday: Date!
+  location: String
+  description: String
+  created_at: Date
+  updated_at: Date
+
+  friends: [UserFriend!]
+  games: [Game!]
+  consoles: [Console!]
+  game_ratings: [GameRating!]
+  game_comments: [GameRating!]
+}
+
+type UserFriend {
+  id: ID!
+  user: User!
+  friend: User!
+  status: UserFriendshipStatus!
+  created_at: Date
+  updated_at: Date
+}

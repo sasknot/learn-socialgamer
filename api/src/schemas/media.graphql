@@ -1,0 +1,21 @@
+input MediaData {
+  filename: String!
+  url: String!
+  mimetype: String
+  kb_size: Int
+}
+
+
+type MediaList {
+  rows: [Media!]!
+}
+
+type Media {
+  id: ID!
+  filename: String!
+  url: String!
+  mimetype: String
+  kb_size: Int
+  created_at: Date
+  updated_at: Date
+}

@@ -1,0 +1,62 @@
+input GameListFilters {
+  keyword: String
+}
+
+input GameData {
+  cover: Int
+  name: String!
+  release_date: Date
+  description: String
+}
+
+input GameRatingData {
+  user: ID!
+  game: ID!
+  number: Int!
+}
+
+input GameCommentData {
+  user: ID!
+  game: ID!
+  message: String!
+}
+
+
+type GameList {
+  rows: [Game!]!
+  paging: Paging
+}
+
+type Game {
+  id: ID!
+  cover: Int!
+  name: String!
+  release_date: Date
+  description: String
+  created_at: Date
+  updated_at: Date
+
+  cover_obj: Media!
+  ratings: [GameRating!]
+  comments: [GameComment!]
+  consoles: [Console!]
+  users: [User!]
+}
+
+type GameRating {
+  id: ID!
+  user: User!
+  game: Game!
+  number: Int!
+  created_at: Date
+  updated_at: Date
+}
+
+type GameComment {
+  id: ID!
+  user: User!
+  game: Game!
+  message: String!
+  created_at: Date
+  updated_at: Date
+}

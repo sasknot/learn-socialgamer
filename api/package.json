@@ -1,0 +1,61 @@
+{
+  "name": "learn-socialgamer-api",
+  "version": "0.0.0",
+  "description": "Learn Social Gamer API",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm run migrate && npm run seed",
+    "start": "pm2 startOrReload pm2.config.js",
+    "stop": "pm2 stop socialgamer-api",
+    "dev": "NODE_ENV=dev npm start --no-daemon && pm2 logs",
+    "docs": "apidoc -i src/routes/ -o docs/",
+    "test": "NODE_ENV=test PORT=8001 jest --runInBand --forceExit",
+    "migrate": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback",
+    "migrate:make": "knex migrate:make",
+    "seed": "knex seed:run",
+    "seed:make": "knex seed:make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sasknot/learn-socialgamer-api.git"
+  },
+  "author": "Rafael Silva <rafaelfsilva1@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/sasknot/learn-socialgamer-api#readme",
+  "dependencies": {
+    "@graphql-toolkit/file-loading": "^0.10.6",
+    "apidoc": "^0.20.1",
+    "apollo-server": "^2.14.2",
+    "bookshelf": "^1.1.1",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.13",
+    "lodash": "^4.17.15",
+    "pm2": "^4.4.0",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link": "^1.2.14",
+    "apollo-link-error": "^1.1.13",
+    "apollo-link-http": "^1.5.17",
+    "graphql-tag": "^2.10.3",
+    "jest": "^26.0.1",
+    "unfetch": "^4.1.0",
+    "weak-napi": "^2.0.2"
+  },
+  "jest": {
+    "verbose": true,
+    "testMatch": [
+      "<rootDir>/tests/**/*_test.js"
+    ],
+    "globalSetup": "<rootDir>/tests/global-setup.js",
+    "globalTeardown": "<rootDir>/tests/global-teardown.js",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ]
+  }
+}
